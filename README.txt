@@ -38,3 +38,7 @@ DATABASE = login-db
 DATABASE_HOST = localhost
 DATABASE_ROOT = root
 DATABASE_PASSWORD =
+
+
+Make sure that you have installed the required hbs module:
+npm install hbs
