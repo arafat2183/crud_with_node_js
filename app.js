@@ -26,6 +26,9 @@ db.connect((error) => {
     }
 });
 
+// Export db so other files can access it
+module.exports = { db };
+
 // Setup Handlebars view engine
 app.set('view engine', 'hbs');
 
@@ -36,23 +39,27 @@ app.use(express.static(publicDir));
 // Set the views directory for Handlebars templates
 app.set('views', path.join(__dirname, 'views'));
 
-// Basic route to check if the server is running
-// app.get('/', (req, res) => {
-//     res.send('Hello World');
-// });
+// Middleware
+const bcrypt = require("bcryptjs");
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+// Routes
+const authRoutes = require('./routes/authRoutes');
+app.use('/', authRoutes);
 
 // Route for homepage, rendering the 'index.hbs' template
-app.get("/", (req, res) => {
-    res.render("index");
-});
-
-app.get("/login", (req, res) => {
-    res.render("login");
-});
-
-app.get("/register", (req, res) => {
-    res.render("register");
-});
+// app.get("/", (req, res) => {
+//     res.render("index");
+// });
+//
+// app.get("/login", (req, res) => {
+//     res.render("login");
+// });
+//
+// app.get("/register", (req, res) => {
+//     res.render("register");
+// });
 
 // Set the port and start listening for requests
 const PORT = process.env.PORT || 3000;
