@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require("mysql");
 const dotenv = require('dotenv');
+const session = require('express-session');
 const path = require('path');
 
 // Initialize dotenv to load environment variables
@@ -46,6 +47,14 @@ app.use(express.static(publicDir));
 // Set the views directory for Handlebars templates
 app.set('views', path.join(__dirname, 'views'));
 
+// Middleware to handle sessions globally
+app.use(session({
+    secret: 'yourSecretKey', // Choose a strong key for production
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // Set secure to true if you're using HTTPS
+}));
+
 // Middleware
 const bcrypt = require("bcryptjs");
 app.use(express.urlencoded({ extended: false }));
@@ -55,18 +64,6 @@ app.use(express.json());
 const authRoutes = require('./routes/authRoutes');
 app.use('/', authRoutes);
 
-// Route for homepage, rendering the 'index.hbs' template
-// app.get("/", (req, res) => {
-//     res.render("index");
-// });
-//
-// app.get("/login", (req, res) => {
-//     res.render("login");
-// });
-//
-// app.get("/register", (req, res) => {
-//     res.render("register");
-// });
 
 // Set the port and start listening for requests
 const PORT = process.env.PORT || 3000;
