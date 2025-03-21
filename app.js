@@ -32,6 +32,13 @@ module.exports = { db };
 // Setup Handlebars view engine
 app.set('view engine', 'hbs');
 
+const hbs = require('hbs');
+
+// Register a custom 'eq' helper for comparison
+hbs.registerHelper('eq', function (a, b) {
+    return a === b; // Checks if a is equal to b
+});
+
 // Configure the public directory for static assets (CSS, JS)
 const publicDir = path.join(__dirname, './public');
 app.use(express.static(publicDir));
