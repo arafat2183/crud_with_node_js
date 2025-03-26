@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require("mysql");
 const dotenv = require('dotenv');
+const session = require('express-session');
 const path = require('path');
 
 // Initialize dotenv to load environment variables
@@ -26,8 +27,18 @@ db.connect((error) => {
     }
 });
 
+// Export db so other files can access it
+module.exports = { db };
+
 // Setup Handlebars view engine
 app.set('view engine', 'hbs');
+
+const hbs = require('hbs');
+
+// Register a custom 'eq' helper for comparison
+hbs.registerHelper('eq', function (a, b) {
+    return a === b; // Checks if a is equal to b
+});
 
 // Configure the public directory for static assets (CSS, JS)
 const publicDir = path.join(__dirname, './public');
@@ -36,23 +47,23 @@ app.use(express.static(publicDir));
 // Set the views directory for Handlebars templates
 app.set('views', path.join(__dirname, 'views'));
 
-// Basic route to check if the server is running
-// app.get('/', (req, res) => {
-//     res.send('Hello World');
-// });
+// Middleware to handle sessions globally
+app.use(session({
+    secret: 'yourSecretKey', // Choose a strong key for production
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // Set secure to true if you're using HTTPS
+}));
 
-// Route for homepage, rendering the 'index.hbs' template
-app.get("/", (req, res) => {
-    res.render("index");
-});
+// Middleware
+const bcrypt = require("bcryptjs");
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
-app.get("/login", (req, res) => {
-    res.render("login");
-});
+// Routes
+const authRoutes = require('./routes/authRoutes');
+app.use('/', authRoutes);
 
-app.get("/register", (req, res) => {
-    res.render("register");
-});
 
 // Set the port and start listening for requests
 const PORT = process.env.PORT || 3000;

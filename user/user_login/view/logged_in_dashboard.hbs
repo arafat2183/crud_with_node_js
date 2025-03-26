@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Node MySQL Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation links -->
@@ -16,20 +23,20 @@
                     <li class="nav-item"><a class="nav-link text-white" href="/">Home</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="/login">Login</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="/register">Register</a></li>
+                    <!-- Show the Logout button only if the user is logged in -->
+                    {{#if user}}
+                        <li class="nav-item"><a class="nav-link text-white" href="/auth/logout">Logout</a></li>
+                    {{/if}}
                 </ul>
             </nav>
         </div>
-    </div>
 
-    <!-- Body of the homepage -->
-    <div class="container mt-4">
-        <div class="p-5 bg-primary text-white rounded">
-            <h1>Welcome to My Login Project</h1>
-            <p>This project demonstrates how to implement login and register functionalities with Node.js and MySQL.</p>
+        <h1 class="text-center">Welcome to Your Profile</h1>
+
+        <div>
+
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybP3aRk4OHfQnxgK92jc8l8LzY0bXtK67s5Kv5XZp3kAyHnbz" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0YV5n1F5Qdy4bf97r+lzsm3I5dV2R8l0z4o5rknle5tqFwY2" crossorigin="anonymous"></script>
 </body>
 </html>
