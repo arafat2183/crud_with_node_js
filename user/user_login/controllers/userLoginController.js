@@ -1,8 +1,10 @@
-const bcrypt = require("bcryptjs");
-const { db } = require('../../../app'); // Make sure this path is correct
+// authLoginController.js
 
-// Login page handler
-exports.loginPage = async (req, res) => {
+const bcrypt = require("bcryptjs");
+const { db } = require('../../../app'); // Ensure the path is correct
+
+// Handle login logic
+exports.login = async (req, res) => {
     const { email, password } = req.body;
 
     // Validate input fields
@@ -37,11 +39,12 @@ exports.loginPage = async (req, res) => {
         };
 
         // Redirect to a protected page (e.g., user dashboard)
-        res.render('../user/user_login/view/logged_in_dashboard', {user: user});
+        // res.render('../user/user_login/view/logged_in_dashboard', { user: user });
+        res.redirect('/auth/login');
     });
 };
 
-// You can also create a logout handler if you want to clear the session
+// Logout handler
 exports.logout = (req, res) => {
     req.session.destroy((err) => {
         if (err) {
