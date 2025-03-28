@@ -7,9 +7,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link text-white" href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="/login">Login</a></li>
-                <li class="nav-item"><a class="nav-link text-white" href="/register">Register</a></li>
+                <li class="nav-item {{#if isHome}}active{{/if}}">
+                    <a class="nav-link text-white" href="/">Home</a>
+                </li>
+                <li class="nav-item {{#if isLogin}}active{{/if}}">
+                    <a class="nav-link text-white" href="/login">Login</a>
+                </li>
+                <li class="nav-item {{#if isRegister}}active{{/if}}">
+                    <a class="nav-link text-white" href="/register">Register</a>
+                </li>
                 {{#if user}}
                     <li class="nav-item">
                         <a class="nav-link dash-button" href="/auth/logout">Logout</a>
