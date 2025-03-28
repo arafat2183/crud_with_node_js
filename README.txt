@@ -43,3 +43,4 @@ DATABASE_PASSWORD =
 Make sure that you have installed the required hbs module:
 npm install hbs
 npm install express-session
+npm install express-handlebars

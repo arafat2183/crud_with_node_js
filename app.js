@@ -1,4 +1,5 @@
 const express = require('express');
+const exphbs = require('express-handlebars');
 const mysql = require("mysql");
 const dotenv = require('dotenv');
 const session = require('express-session');
@@ -30,7 +31,12 @@ db.connect((error) => {
 // Export db so other files can access it
 module.exports = { db };
 
-// Setup Handlebars view engine
+// Set up Handlebars as the view engine
+app.engine('hbs', exphbs.engine({
+    extname: 'hbs',
+    defaultLayout: 'main',  // Specify the default layout file (main.hbs)
+    layoutsDir: path.join(__dirname, 'views', 'layouts')  // Specify the layouts directory
+}));
 app.set('view engine', 'hbs');
 
 const hbs = require('hbs');
@@ -57,7 +63,7 @@ app.use(session({
 
 // Middleware
 const bcrypt = require("bcryptjs");
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Routes
