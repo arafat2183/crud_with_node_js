@@ -1,0 +1,15 @@
+<!-- login.hbs -->
+{{! This content will be injected into the body placeholder of base.hbs }}
+
+<h2>Login</h2>
+<form action="/auth/login" method="POST">
+    <div class="mb-3">
+        <label for="email-login" class="form-label">Email <span style="color:red;">*</span></label>
+        <input type="text" class="form-control" id="email-login" name="email" required>
+    </div>
+    <div class="mb-3">
+        <label for="password-login" class="form-label">Password <span style="color:red;">*</span></label>
+        <input type="password" class="form-control" id="password-login" name="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>

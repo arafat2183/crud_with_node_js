@@ -1,0 +1,37 @@
+<h1 class="text-center">Welcome Back <span style="color:red;">{{user.name}}</span></h1>
+            <div class="container mt-3">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </div>
+
+            <div class="container mt-3">
+                <h2>Responsive Content Divs</h2>
+                <p>Here are 3 auto-sized divs. They will adjust based on the screen size.</p>
+
+                <!-- Using Bootstrap Grid System for responsiveness -->
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 content-div">
+                        <h3>Content 1</h3>
+                        <p>This is the content for the first div. It will auto adjust based on screen size.</p>
+                        <button class="btn dash-button d-none d-sm-block">Click Me</button> <!-- Button hidden on large screens -->
+                        <button class="btn dash-button btn-small-screen d-block d-sm-none">Click Me (Small Screen)</button> <!-- Button visible on small screens -->
+                    </div>
+                    <div class="col-md-4 col-sm-12 content-div">
+                        <h3>Content 2</h3>
+                        <p>This is the content for the second div. It will be responsive.</p>
+                        <button class="btn dash-button d-none d-sm-block">Click Me</button>
+                        <button class="btn dash-button btn-small-screen d-block d-sm-none">Click Me (Small Screen)</button>
+                    </div>
+                    <div class="col-md-4 col-sm-12 content-div">
+                        <h3>Content 3</h3>
+                        <p>This is the content for the third div. It will stack on smaller screens.</p>
+                        <button class="btn dash-button d-none d-sm-block">Click Me</button>
+                        <button class="btn dash-button btn-small-screen d-block d-sm-none">Click Me (Small Screen)</button>
+                    </div>
+                </div>
+            </div>
